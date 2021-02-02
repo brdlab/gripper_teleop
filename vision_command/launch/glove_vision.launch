@@ -1,0 +1,14 @@
+<launch>
+
+<!-- Launch camera (intel Realsense D435i) node -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+
+<!-- Launch gesture classification to command generation -->
+  <node name="vision"   	pkg="vision_command"    type="vision_pressure_command.py"	required="true"		output="log" />
+
+<!-- Launch image view for prediction image -->
+  <node name="image_view" 	pkg="image_view" 	type="image_view"   respawn="false"		output="log">
+    <remap from="image" 	to="/vision/prediction_image" />
+  </node>
+
+</launch>
