@@ -1,0 +1,15 @@
+<launch>
+  <arg name="glove_port" default="/dev/ttyACM2" />
+  <arg name="arduino" default="true" />
+
+<!-- Launch led publisher for wearable -->
+  <node name="led_publisher"    pkg="grasp_configurator"  type="led_publisher.py"     required="true" output="screen" />
+
+<!-- Launch wearable rosserial node -->
+  <group if="$(arg arduino)">
+    <node name="glove_arduino"  pkg="rosserial_python"  type="serial_node.py" required="true" output="screen">
+      <param name="port" value="$(arg glove_port)" />
+    </node>
+  </group>
+
+</launch>
