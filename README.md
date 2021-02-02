@@ -18,36 +18,27 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
 
 ## Install the EZGripper ROS Driver (Indigo or Kinetic)
 
-1) Install the python EZGripper library https://github.com/SAKErobotics/libezgripper
+1) Install the teleoperation and gripper driver packages
 
-2) Install dependencies:
+2) Install dependencies listed above
 
-	$ sudo apt-get install ros-indigo-joystick-drivers
-	
-	or 
-	
-	$ sudo apt-get install ros-kinetic-joystick-drivers
+3) Run catkin_make
 
-3) Download code:
+4) Setup arguments in launch file sutd_gripper.launch
+  - ~sensor_port - serial device for sensor data acquisition (e.g. '/dev/ttyACM0')
+  - ~regulator_port - serial device for regulating gripper pressure 
 
-	$ cd ~/catkin_ws/src
-	$ git clone https://github.com/SAKErobotics/EZGripper.git
-	$ cd ..
-	$ catkin_make
-
-4) Setup parameters in joy.launch file
-  - ~port - serial device (like "/dev/ttyUSB0") or tcp endpoint (like "192.168.0.200:5000") to use
-  - ~baud - baud rate of the serial device, not used for tcp
-  - grippers - definition of grippers on this serial bus: the gripper name to use for the action interface and the servo id of the gripper (several ids if several grippers are to be used as one group), for example {left:[9], right:[10,11]}.  By default, SAKE Robotics delivers its grippers with address 1 for Duals and 1 and 2 for Quads and 57kbps.
-
-5) Launch files - 
+5) Setup argument in launch file glove_driver.launch
+  - ~glove_port - serial device for wearable
+  
+6) Launch files - 
 	`$ roslaunch grasp_configurator glove_driver.launch`
 Launches the wearable driver and dynamic reconfigure packages
 	  
 	`$ roslaunch vision_command glove_vision.launch`
 Launches the camera node and gesture classification system
 	  
-	`$ roslaunch gripper_controller gripper_controller.launch`
+	`$ roslaunch sutd_gripper sutd_gripper.launch`
 Launches the gripper controller
 
 ## Dynamic Reconfigure
