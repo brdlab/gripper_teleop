@@ -10,10 +10,11 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
 # Requirements
 - Ubuntu 18.04
 - ROS Melodic
+- ROS dependencies - image_pipeline, intel_realsense (or any camera driver)
 - OpenCV
 - Tensorflow2
 - Python 3.7
-- Other dependencies: matplotlib, sklearn, numpy
+- Python dependencies: matplotlib, sklearn, numpy, pyserial
 
 ## Install the EZGripper ROS Driver (Indigo or Kinetic)
 
@@ -39,34 +40,31 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
   - ~baud - baud rate of the serial device, not used for tcp
   - grippers - definition of grippers on this serial bus: the gripper name to use for the action interface and the servo id of the gripper (several ids if several grippers are to be used as one group), for example {left:[9], right:[10,11]}.  By default, SAKE Robotics delivers its grippers with address 1 for Duals and 1 and 2 for Quads and 57kbps.
 
-5) Launch the node - example launch files to support various EZGripper configurations.  
+5) Launch files - 
+	`$ roslaunch grasp_configurator glove_driver.launch`
+Launches the wearable driver and dynamic reconfigure packages
+	  
+	`$ roslaunch vision_command glove_vision.launch`
+Launches the camera node and gesture classification system
+	  
+	`$ roslaunch gripper_controller gripper_controller.launch`
+Launches the gripper controller
 
-	$ roslaunch ezgripper_driver joy.launch
-	  // joy.launch is configured for a single servo gripper (dual) and the USB interface
-	  
-	$ roslaunch ezgripper_driver joy2.launch
-	  // joy2.launch is configured for two independent servos (quad independent) and the USB interface
-	  
-	$ roslaunch ezgripper_driver joy2sync.launch
-	  // joy2sync.launch controls two servos as if it were a single servo (quad dependent) and the USB interface
-	  
-	$ roslaunch ezgripper_driver joy_tcp.launch
-	  // joy_tcp.launch controls a single servo via TCP instead of USB
-	
 ## Dynamic Reconfigure
 
 Using ROS dynamic_reconfigure, inputs to the teleoperation system can be given during runtime:
 
-1) grasp_mode - selects actuation mode for SUTD Soft gripper
-
+1) **grasp_mode** - selects actuation mode for SUTD Soft gripper ('int'; 0 (Default) - no grasping, 1 - Aperture Mode, 2 - Gripper Mode)
+2) **payload_select** - select payload to be grasped ('enum'; Free Grasping (0) for no grasping force limits or Controlled Grasping (non-0) for force limits). Payload force definitions can be defined in scripts/payload.py
+3) **hold_pressure** - sets pressure command to the previous available pressure command sent by gesture system ('bool')
+4) **override_pressure** - allows manual override of gripper using dynamic_reconfigure ('bool')
 
 ## TroubleShooting
 
 Serial connection issues:
 
-	Error message: 'Serial' object has no attribute 'setParity'  --- this message indicates you have a new version of serial library that causes issues.  Do the following command to load an older pySerial library.
-	$ sudo pip install "pySerial>=2.0,<=2.9999"
-	
 	Error message: permission denied (get accurate error message).  This indicates the user does not have privellages to use the /dev/ttyUSBx.  The solution is to add the <user> to the "dialout" group.  After executing the following command, reboot.
 	$ sudo adduser <user> dialout
 	reboot
+
+CVbridge issues: Download and compile cv_bridge in another workspace using `catkin build` according to [this guide](https://cyaninfinite.com/ros-cv-bridge-with-python-3/). Add the `source $[CATKIN_BUILD_WORKSPACE]/devel/setup.bash` to your `~/.bashrc` for convenience.
