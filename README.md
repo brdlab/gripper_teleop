@@ -67,4 +67,6 @@ Serial connection issues:
 	$ sudo adduser <user> dialout
 	reboot
 
-CVbridge issues: Download and compile cv_bridge in another workspace using `catkin build` according to [this guide](https://cyaninfinite.com/ros-cv-bridge-with-python-3/). Add the `source $[CATKIN_BUILD_WORKSPACE]/devel/setup.bash` to your `~/.bashrc` for convenience.
+CVbridge issues: 
+
+Download and compile cv_bridge in another workspace using `catkin build` according to [this guide](https://cyaninfinite.com/ros-cv-bridge-with-python-3/). Add `source $[CATKIN_BUILD_WORKSPACE]/devel/setup.bash` to your `~/.bashrc` for convenience.
