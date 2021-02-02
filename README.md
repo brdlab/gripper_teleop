@@ -22,6 +22,8 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
 
 2) Install dependencies listed above
 
+3) Download model from [here](https://sutdapac-my.sharepoint.com/:f:/g/personal/snehal_jain_sutd_edu_sg/ErB0CbzHe6tGruoOy6DrV70BE9cW2EN_xPpyMtrvBLmUQg?e=GqT1ST). Save folder 'glove_model' in vision_commmand/scripts/
+
 3) Run catkin_make
 
 4) Setup arguments in launch file sutd_gripper.launch
@@ -31,7 +33,8 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
 5) Setup argument in launch file glove_driver.launch
   - ~glove_port - serial device for wearable
   
-6) Launch files - 
+6) Launch files 
+
 	`$ roslaunch grasp_configurator glove_driver.launch`
 Launches the wearable driver and dynamic reconfigure packages
 	  
