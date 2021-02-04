@@ -42,8 +42,8 @@ class VisionCommand(object):
 			1, (0,0,0), 2, cv2.LINE_AA)
 		self.pub_cam.publish(self.br.cv2_to_imgmsg(frame, "rgb8"))
 	#	rospy.loginfo("publishing image")
-		if rospy.has_param('/grasp_mode/mode_select'):
-			mode = rospy.get_param('/grasp_mode/mode_select')
+		if rospy.has_param('/grasp_mode/grasping_mode'):
+			mode = rospy.get_param('/grasp_mode/grasping_mode')
 		else:
 			mode = 0
 		if rospy.has_param('/grasp_mode/hold_pressure'):
@@ -51,7 +51,7 @@ class VisionCommand(object):
 		else:
 			hold = False
 		if rospy.has_param('/grasp_mode/override_pressure'):
-			override = get_param('/grasp_mode/override_pressure')
+			override = rospy.get_param('/grasp_mode/override_pressure')
 		else:
 			override = True
 		if not override:
