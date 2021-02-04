@@ -4,56 +4,67 @@ payload_dict = [
 	{
 		'name':'Free Grasp',
 		'index':0,
-		'limit':80
+		'plimit':80,
+		'flimit':40
 	},
 	{
 		'name':'Nespresso',
 		'index':1,
-		'limit':40
+		'plimit':40,
+		'flimit':5
 	},
 	{
 		'name':'LED Lamp',
 		'index':2,
-		'limit':60
+		'plimit':60,
+		'flimit':10
 	},
 	{
 		'name':'Coke Can',
 		'index':3,
-		'limit':60
+		'plimit':60,
+		'flimit':20
 	},
 	{
 		'name':'Shampoo',
 		'index':4,
-		'limit':80
+		'plimit':80,
+		'flimit':40
 	},
 	{
 		'name':'Paper Ball',
 		'index':5,
-		'limit':20
+		'plimit':20,
+		'flimit':10
 	},
 	{
 		'name':'Liquid Refill',
 		'index':6,
-		'limit':40
+		'plimit':40,
+		'flimit':40
 	},
 	{
 		'name':'Paper Ball Pack',
 		'index':7,
-		'limit':40
+		'plimit':40,
+		'flimit':15
 	},
 	{
 		'name':'Coke bottle',
 		'index':8,
-		'limit':60
+		'plimit':60,
+		'flimit':40
 	},
 	{
 		'name':'Noodles',
 		'index':9,
-		'limit':80
+		'plimit':80,
+		'flimit':20
 	},
 	{
 		'name':'Cereal',
 		'index':10,
-		'limit':60
+		'plimit':60,
+		'flimit':25
 	}
 ]
