@@ -1,0 +1,31 @@
+<launch>
+  <arg name="sensor_port" default="/dev/ttyACM0" />
+  <arg name="regulator_port" default="/dev/ttyACM1" />
+
+  <arg name="sensor" default="true" />
+
+<!-- Launch grasp mode configurator -->
+  <node name="grasp_mode"       pkg="grasp_configurator"  type="grasp_mode.py"        required="true" output="log" />
+  <node name="gripper_param"    pkg="rqt_reconfigure"     type="rqt_reconfigure"      required="true" />
+
+<!-- Launch gripper regulator rosserial node -->
+  <node name="gripper_regulator"    pkg="rosserial_python"  type="serial_node.py"  required="true"  output="screen">
+    <param name="port"    value="$(arg regulator_port)" />
+  </node>
+
+<!-- Launch image view for gripper video from camera 2-->
+  <node name="image_view2"   pkg="image_view"  type="image_view"   respawn="false"   output="log">
+    <remap from="image"   to="/cmaera2/color/image_raw" />
+  </node>
+
+<!-- Launch gripper sensor rosserial node, if arg sensor is true -->
+  <group if="$(arg sensor)">
+    <node name="gripper_data"  pkg="rosserial_python"  type="serial_node.py" required="true" output="screen">
+      <param name="port" value="$(arg sensor_port)" />
+    </node>
+  </group>
+
+<!-- Launch node to convert sensor to force value -->
+  <node name="gripper_force" pkg="sutd_gripper"  type="force_sensor.py"  required="true"  output="screen" />
+
+</launch>
