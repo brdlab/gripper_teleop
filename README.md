@@ -10,11 +10,11 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
 # Requirements
 - Ubuntu 18.04
 - ROS Melodic
-- ROS dependencies - image_pipeline, intel_realsense (or any camera driver)
+- ROS dependencies - image_pipeline, intel_realsense (or any RGB camera driver), cv_bridge, std_msgs, rosserial_arduino
 - OpenCV
 - Tensorflow2
 - Python 3.7
-- Python dependencies: matplotlib, sklearn, numpy, pyserial
+- Python dependencies: sklearn, numpy, pyserial, math
 
 ## Install the EZGripper ROS Driver (Indigo or Kinetic)
 
