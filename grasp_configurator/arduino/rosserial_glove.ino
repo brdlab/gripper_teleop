@@ -1,6 +1,8 @@
 // ROS node for wearable microcontroller to control 
 // LED output
 
+// Used and tested on Bluno
+
 // Author : Snehal Jain
 
 #include <ros.h>
