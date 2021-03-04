@@ -57,7 +57,7 @@ Using ROS dynamic_reconfigure, inputs to the teleoperation system can be given d
 
 The image below shows the intended ROS-Node map for this system
 
-![plot](ROSNode.png)
+![plot](ROS.png)
 
 ## TroubleShooting
 
