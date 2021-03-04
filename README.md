@@ -16,9 +16,9 @@ ROS Packages for the SUTD Gripper teleoperation. Consists of 3 main modules:
 - Python 3.7
 - Python dependencies: sklearn, numpy, pyserial, math
 
-## Install the EZGripper ROS Driver (Indigo or Kinetic)
+## Installation Steps
 
-1) Install the teleoperation and gripper driver packages
+1) Install the teleoperation and gripper driver packages. If you are using a master-slave system, refer to node map below to install right packages on the right system.
 
 2) Install dependencies listed above
 
@@ -52,6 +52,12 @@ Using ROS dynamic_reconfigure, inputs to the teleoperation system can be given d
 2) **payload_select** - select payload to be grasped ('enum'; Free Grasping (0) for no grasping force limits or Controlled Grasping (non-0) for force limits). Payload force definitions can be defined in scripts/payload.py
 3) **hold_pressure** - sets pressure command to the previous available pressure command sent by gesture system ('bool')
 4) **override_pressure** - allows manual override of gripper using dynamic_reconfigure ('bool')
+
+## ROS Node Map
+
+The image below shows the intended ROS-Node map for this system
+
+![plot](ROSNode.png)
 
 ## TroubleShooting
 
